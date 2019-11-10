@@ -8,6 +8,7 @@ import About from "./components/pages/About.js";
 import Alert from "./components/layout/Alert";
 import "./App.css";
 import GitHubState from './context/github/GithubState'
+import AlertState from './context/alerts/alertState'
 
 const App = () => {
   const [alert, setAlert] = useState(null);
@@ -19,6 +20,7 @@ const App = () => {
   };
     return (
       <GitHubState>
+        <AlertState>
       <Router>
         <div className="App">
           <Navbar />
@@ -49,6 +51,7 @@ const App = () => {
           </div>
         </div>
       </Router>
+      </AlertState>
       </GitHubState>
     );
   }
