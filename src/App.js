@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Users from "./components/users/Users";
@@ -11,13 +11,6 @@ import GitHubState from './context/github/GithubState'
 import AlertState from './context/alerts/alertState'
 
 const App = () => {
-  const [alert, setAlert] = useState(null);
-  //Set alert
-  const showAlert = (msg, type) => {
-    setAlert({ msg, type });
-
-    setTimeout(() => setAlert(null), 5000);
-  };
     return (
       <GitHubState>
         <AlertState>
@@ -25,7 +18,7 @@ const App = () => {
         <div className="App">
           <Navbar />
           <div className="container">
-            <Alert alert={alert} />
+            <Alert />
             <Switch>
               <Route
                 exact
@@ -33,7 +26,6 @@ const App = () => {
                 render={props => (
                   <Fragment>
                     <Search
-                      setAlert={showAlert}
                     />
                     <Users />
                   </Fragment>
@@ -45,8 +37,6 @@ const App = () => {
                 path='/user/:login'
                 component={User}
                   />
-                )}
-              />
             </Switch>
           </div>
         </div>
